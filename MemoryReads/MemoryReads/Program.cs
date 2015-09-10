@@ -1,4 +1,6 @@
-﻿
+﻿/*
+
+*/
 
 using System;
 using System.CodeDom;
@@ -8,18 +10,37 @@ using System.Linq;
 using System.Numerics;
 using System.Threading;
 
+// quick run on windows 10 on the 4 cores machine using .net native!
+// single threaded only:                           1 thread   16.207 GB/s    0.46 ns  2175.3 MHz (617...)
+// to be compared to  SequentialReads-1:           1 threads  11.025 GB/s    0.68 ns  1479.8 MHz   (907  934.3    960  20.35     10)
+// to be compared to  SequentialReadsVectorized-1: 1 threads  14.881 GB/s     0.5 ns  1997.3 MHz   (672  736.4   1052  115.2     10
+
 namespace MemoryReads {
     internal class Program {
         private static void Main(string[] args) {
-            InitializeRandomLongs();
+
+            //LargeArrayRandomReads(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 24, 28);
+            //LargeArraySequentialReads(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 24, 28);
+            //LargeArraySequentialReads(1, 2, 5, 10);
+            //return;
 
             var maxThreadCount = int.Parse(args[0]);
+            RandomReads(maxThreadCount, 1);
+            RandomReads(maxThreadCount, 2);
+            RandomReads(maxThreadCount, 3);
+            RandomReads(maxThreadCount, 4);
+            RandomReads(maxThreadCount, 5);
+            RandomReads(maxThreadCount, 6);
+
+            return;
+            InitializeRandomLongs();
+
 
             SequentialReads(maxThreadCount, 1);
             Console.WriteLine("");
             SequentialReadsVectorized(maxThreadCount, 1);
             Console.WriteLine("");
-            RandomReads(maxThreadCount);
+            RandomReads(maxThreadCount,1);
             Console.WriteLine("");
 
             ChainedReads(maxThreadCount, 1);
@@ -46,14 +67,14 @@ namespace MemoryReads {
 
         // number of longs in a 1GB array of longs
         private static int max = 128*1024*1024;
-        private static long iterations = 10;
+        private static long iterations = 5;
 
         // a 1GB array of linked longs, every entry is the index of the next one: index = randomLongs[index]
         // the values are as random as possible so the prefetcher stands no chance of guessing what to prefech
         // only 90% of the array is actually populated
         private static long[] randomLongs;
 
-        // 20 entry points to the randomLongs array, they are all distant by 1'000'000 values
+        // 20 entry points to the randomLongs array, they are all distant of 1'000'000 values
         public static List<long> entryPoints = new List<long>();
 
         private static void InitializeRandomLongs() {
@@ -292,7 +313,10 @@ namespace MemoryReads {
             }
         }
 
-        private static void RandomReads(int maxThreadCount) {
+        
+
+
+        private static void RandomReads(int maxThreadCount, int inThreadParallelismLevel) {
             var arrays = maxThreadCount.EnumerateTo().Select(t => new long[max]).ToArray();
             foreach (var array in arrays) for (int i = 0; i < array.Length; i++) array[i] = i;
             for (int threadCount = 1; threadCount <= maxThreadCount; threadCount += 1)
@@ -303,9 +327,67 @@ namespace MemoryReads {
                 for (int run = 0; run < 10; run++)
                 {
                     var threads = threadCount.EnumerateTo().Select(t => new Thread(() => {
-                        long total = 0;
-                        var array = arrays[0];
-                        for (int i = 0; i < steps; i++) total += array[(11587L*i) & mask]; // is this good enough to outsmart the prefetcher?
+                        long total0 = 0;
+                        long total1 = 0;
+                        long total2 = 0;
+                        long total3 = 0;
+                        long total4 = 0;
+                        long total5 = 0;
+                        var array = arrays[t];
+                        switch (inThreadParallelismLevel) {
+                            case 1: {
+                                for (int i = 0; i < steps; i++) {
+                                    total0 += array[(11587L*i) & mask]; // is this good enough to outsmart the prefetcher?
+                                }
+                                break;
+                            }
+                            case 2: {
+                                    for (int i = 0; i < steps; i++) {
+                                        total0 += array[(24317L * i) & mask];
+                                        total1 += array[(14407L * i) & mask];
+                                    }
+                                    break;
+                            }
+                            case 3: {
+                                    for (int i = 0; i < steps; i++) {
+                                        total0 += array[(24317L * i) & mask];
+                                        total1 += array[(14407L * i) & mask];
+                                        total2 += array[(11587L * i) & mask];
+                                    }
+                                    break;
+                            }
+                            case 4: {
+                                    for (int i = 0; i < steps; i++) {
+                                        total0 += array[(24317L * i) & mask];
+                                        total1 += array[(14407L * i) & mask];
+                                        total2 += array[(11587L * i) & mask];
+                                        total3 += array[( 9767L * i) & mask];
+                                    }
+                                    break;
+                            }
+                            case 5: {
+                                    for (int i = 0; i < steps; i++) {
+                                        total0 += array[(24317L * i) & mask];
+                                        total1 += array[(14407L * i) & mask];
+                                        total2 += array[(11587L * i) & mask];
+                                        total3 += array[( 9767L * i) & mask];
+                                        total4 += array[( 5261L * i) & mask];
+                                    }
+                                    break;
+                            }
+                            case 6: {
+                                    for (int i = 0; i < steps; i++) {
+                                        total0 += array[(24317L*i) & mask];
+                                        total1 += array[(14407L*i) & mask];
+                                        total2 += array[(11587L*i) & mask];
+                                        total3 += array[( 9767L*i) & mask];
+                                        total4 += array[( 5261L*i) & mask];
+                                        total5 += array[( 1283L*i) & mask];
+                                    }
+                                    break;
+                            }
+                        }
+
                     })).ToList();
                     var sw = Stopwatch.StartNew();
                     threads.ForEach(t => t.Start());
@@ -313,15 +395,15 @@ namespace MemoryReads {
                     times.Add(sw.ElapsedMilliseconds);
                 }
 
-                double totalNumberOfLongsRead = steps * (long)threadCount;
+                double totalNumberOfLongsRead = steps * (long)threadCount * inThreadParallelismLevel;
                 double totalBytesRead = 8 * totalNumberOfLongsRead;
-                double numberOfLongsReadInOneThread = steps;
+                double numberOfLongsReadInOneThread = steps* inThreadParallelismLevel;
                 double timeInSeconds = times.Min() / 1000.0;
 
                 var bandwidth = totalBytesRead / timeInSeconds / 1024.0 / 1024.0 / 1024.0; // GB/s
                 var readsPerSecond = totalNumberOfLongsRead / timeInSeconds / 1000.0 / 1000.0; // MHz
                 var accessTime = timeInSeconds / numberOfLongsReadInOneThread * 1000.0 * 1000.0 * 1000.0; // ns
-                DumpResults($"RandomReads: ", threadCount, times, bandwidth, accessTime, readsPerSecond);
+                DumpResults($"RandomReads-{inThreadParallelismLevel}:", threadCount, times, bandwidth, accessTime, readsPerSecond);
             }
         }
 
@@ -406,6 +488,105 @@ namespace MemoryReads {
                 var readsPerSecond = totalNumberOfLongsRead / timeInSeconds / 1000.0 / 1000.0; // MHz
                 var accessTime = timeInSeconds / numberOfLongsReadInOneThread * 1000.0 * 1000.0 * 1000.0; // ns
                 DumpResults($"SequentialReadsVectorized-{arrayCount}: ", threadCount, times, bandwidth, accessTime, readsPerSecond);
+            }
+        }
+        private static void LargeArraySequentialReads(params int[] sizes)
+        {
+            var arrays = sizes.Max().EnumerateTo().Select(t => new long[max]).ToArray();
+            foreach (var array in arrays) for (int i = 0; i < array.Length; i++) array[i] = i;
+            foreach (var size in sizes)
+            {
+                long steps = max;
+                var times = new List<double>();
+                for (int run = 0; run < 10; run++)
+                {
+                    var sw = Stopwatch.StartNew();
+                    for (int iteration = 0; iteration < iterations; iteration++)
+                    {
+                        var total = 0L;
+                        for (int j = 0; j < size; j++)
+                        {
+                            var array = arrays[j];
+                            for (int i = 0; i < steps; i++)
+                            {
+                                total += array[i]; // is this good enough to outsmart the prefetcher?
+                            }
+                        }
+                    }
+                    times.Add(sw.ElapsedMilliseconds);
+                }
+                double totalNumberOfLongsRead = steps * size * iterations;
+                double totalBytesRead = 8L * totalNumberOfLongsRead;
+                double numberOfLongsReadInOneThread = steps * size * iterations;
+                double timeInSeconds = times.Min() / 1000.0;
+
+                var bandwidth = totalBytesRead / timeInSeconds / 1024.0 / 1024.0 / 1024.0; // GB/s
+                var readsPerSecond = totalNumberOfLongsRead / timeInSeconds / 1000.0 / 1000.0; // MHz
+                var accessTime = timeInSeconds / numberOfLongsReadInOneThread * 1000.0 * 1000.0 * 1000.0; // ns
+                DumpResults($"SequentialReads on {size} GB: ", 1, times, bandwidth, accessTime, readsPerSecond);
+            }
+        }
+
+
+        private static void LargeArrayRandomReads(params int[] sizes)
+        {
+            var arrays = sizes.Max().EnumerateTo().Select(t => new long[max]).ToArray();
+            foreach (var array in arrays) for (int i = 0; i < array.Length; i++) array[i] = i;
+            foreach (var size in sizes)
+            {
+                long steps = 10 * 25000000 / 4;
+                long mask = max - 1;
+                var times = new List<double>();
+                for (int run = 0; run < 10; run++)
+                {
+                    var total = 0L;
+                    var sw = Stopwatch.StartNew();
+                    for (int i = 0; i < steps; i++)
+                    {
+                        total += arrays[i % size][(11587L * i) & mask]; // is this good enough to outsmart the prefetcher?
+                    }
+                    times.Add(sw.ElapsedMilliseconds);
+                }
+                double totalNumberOfLongsRead = steps;
+                double totalBytesRead = 8L * totalNumberOfLongsRead;
+                double numberOfLongsReadInOneThread = steps;
+                double timeInSeconds = times.Min() / 1000.0;
+
+                var bandwidth = totalBytesRead / timeInSeconds / 1024.0 / 1024.0 / 1024.0; // GB/s
+                var readsPerSecond = totalNumberOfLongsRead / timeInSeconds / 1000.0 / 1000.0; // MHz
+                var accessTime = timeInSeconds / numberOfLongsReadInOneThread * 1000.0 * 1000.0 * 1000.0; // ns
+                DumpResults($"RandomReads on {size} GB: ", 1, times, bandwidth, accessTime, readsPerSecond);
+            }
+        }
+
+        private static void LargeArrayChainedReads(params int[] sizes)
+        {
+            var arrays = sizes.Max().EnumerateTo().Select(t => new long[max]).ToArray();
+            foreach (var array in arrays) for (int i = 0; i < array.Length; i++) array[i] = i;
+            foreach (var size in sizes)
+            {
+                long steps = 1 * 25000000 / 4;
+                long mask = max - 1;
+                var times = new List<double>();
+                for (int run = 0; run < 10; run++)
+                {
+                    var next = 0L;
+                    var sw = Stopwatch.StartNew();
+                    for (int i = 0; i < steps; i++)
+                    {
+                        next = arrays[i % size][(11587L * (i + next)) & mask]; // is this good enough to outsmart the prefetcher?
+                    }
+                    times.Add(sw.ElapsedMilliseconds);
+                }
+                double totalNumberOfLongsRead = steps;
+                double totalBytesRead = 8L * totalNumberOfLongsRead;
+                double numberOfLongsReadInOneThread = steps;
+                double timeInSeconds = times.Min() / 1000.0;
+
+                var bandwidth = totalBytesRead / timeInSeconds / 1024.0 / 1024.0 / 1024.0; // GB/s
+                var readsPerSecond = totalNumberOfLongsRead / timeInSeconds / 1000.0 / 1000.0; // MHz
+                var accessTime = timeInSeconds / numberOfLongsReadInOneThread * 1000.0 * 1000.0 * 1000.0; // ns
+                DumpResults($"ChainedReads on {size} GB: ", 1, times, bandwidth, accessTime, readsPerSecond);
             }
         }
     }
