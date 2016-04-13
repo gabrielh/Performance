@@ -17,86 +17,51 @@ using System.Threading;
 namespace MemoryReads {
     internal class Program {
         private static void Main(string[] args) {
-            LargeArrayRandomReads(8, 1, 1);
-            LargeArrayRandomReads(8, 2, 1);
-            LargeArrayRandomReads(8, 4, 1);
-
-            LargeArrayRandomReads(8, 1, 28);
-            LargeArrayRandomReads(8, 2, 28);
-            LargeArrayRandomReads(8, 4, 28);
-
-
-            LargeArrayChainedReads(8, 1, 1);
-            LargeArrayChainedReads(8, 2, 1);
-            LargeArrayChainedReads(8, 4, 1);
-
-            LargeArrayChainedReads(8, 1, 28);
-            LargeArrayChainedReads(8, 2, 28);
-            LargeArrayChainedReads(8, 4, 28);
-
-
-            return;
-
-            //LargeArrayChainedReads(1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-            //LargeArrayChainedReads(2, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-            //LargeArrayChainedReads(4, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-            //LargeArrayRandomReads(1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-            //LargeArrayRandomReads(2, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-            //LargeArrayRandomReads(4, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-
-            LargeArrayChainedReads(1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 24, 28);
-            LargeArrayChainedReads(1, 2, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 24, 28);
-            LargeArrayChainedReads(1, 4, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 24, 28);
-            LargeArrayRandomReads(1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 24, 28);
-            LargeArrayRandomReads(2, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 24, 28);
-            LargeArrayRandomReads(4, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 24, 28);
-            //LargeArraySequentialReads(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 24, 28);
-            //LargeArraySequentialReads(1, 2, 5, 10);
-            return;
-
-            var maxThreadCount = int.Parse(args[0]);
-            RandomReads(maxThreadCount, 1);
-            RandomReads(maxThreadCount, 2);
-            RandomReads(maxThreadCount, 3);
-            RandomReads(maxThreadCount, 4);
-            RandomReads(maxThreadCount, 5);
-            RandomReads(maxThreadCount, 6);
-
-            return;
             InitializeRandomLongs();
 
+            Console.WriteLine(primes.Length);
+            //NewChainedReads(8, 5);
+            //NewChainedReads(8, 6);
+            //NewChainedReads(8, 7);
+            //NewChainedReads(8, 8);
 
-            SequentialReads(maxThreadCount, 1);
-            Console.WriteLine("");
-            SequentialReadsVectorized(maxThreadCount, 1);
-            Console.WriteLine("");
-            RandomReads(maxThreadCount,1);
-            Console.WriteLine("");
+            //NewRandomReads(8, 1);
+            //NewRandomReads(8, 2);
+            //NewRandomReads(8, 3);
+            //NewRandomReads(8, 4);
+            //NewRandomReads(8, 5);
+            //NewRandomReads(8, 6);
 
-            ChainedReads(maxThreadCount, 1);
-            Console.WriteLine("");
-            6.ForEach(i => SequentialReads(1, i + 1));
-            Console.WriteLine("");
-            6.ForEach(i => SequentialReadsVectorized(1, i + 1));
-            Console.WriteLine("");
-            6.ForEach(i => ChainedReads(1, i + 1));
-            Console.WriteLine("");
-            Console.WriteLine("");
-            ChainedReads(maxThreadCount/2, 1);
-            Console.WriteLine("");
-            ChainedReads(maxThreadCount/2, 2);
-            Console.WriteLine("");
-            ChainedReads(maxThreadCount/2, 3);
-            Console.WriteLine("");
-            ChainedReads(maxThreadCount/2, 4);
-            Console.WriteLine("");
-            ChainedReads(maxThreadCount/2, 5);
-            Console.WriteLine("");
-            ChainedReads(maxThreadCount/2, 6);
+            //return;
+
+            NewChainedReads(6, 1);
+            NewChainedReads(6, 2);
+            NewChainedReads(6, 3);
+            NewChainedReads(6, 4);
+            NewChainedReads(6, 5);
+            NewChainedReads(6, 6);
+            //NewChainedReads(4 ,7);
+            //NewChainedReads(4, 8);
+            //return;
+
+            NewSequentialReads(6, 1);
+            NewSequentialReads(6, 2);
+            NewSequentialReads(6, 3);
+            NewSequentialReads(6, 4);
+            NewSequentialReads(6, 5);
+            NewSequentialReads(6, 6);
+            //return;
+
+            NewRandomReads(6, 1);
+            NewRandomReads(6, 2);
+            NewRandomReads(6, 3);
+            NewRandomReads(6, 4);
+            NewRandomReads(6, 5);
+            NewRandomReads(6, 6);
         }
 
         // number of longs in a 1GB array of longs
-        private static int max = 128*1024*1024;
+        private static int max = 128 * 1024 * 1024;
         private static long iterations = 5;
 
         // a 1GB array of linked longs, every entry is the index of the next one: index = randomLongs[index]
@@ -104,8 +69,13 @@ namespace MemoryReads {
         // only 90% of the array is actually populated
         private static long[] randomLongs;
 
-        // 20 entry points to the randomLongs array, they are all distant of 1'000'000 values
+        // 8*12 entry points to the randomLongs array, they are all distant of 1'000'000 values  
         public static List<long> entryPoints = new List<long>();
+
+        // prime numbers to walk the arrays
+        private const int primesCount = 8*8+5;
+        public static long[] primes = { 53777, 57467, 62617, 63599, 71147, 76099, 79903, 81869, 85513, 88873, 91139, 93319, 96181, 100501, 4079, 5279, 6473, 8053, 9473, 10301, 11987, 12281, 13127, 14723, 15971, 17327, 18253, 19697, 21089, 22229, 23497, 26261, 28001, 30469, 33637, 36251, 40151, 42157, 45007, 48337, 110059, 112297, 116969, 117053, 117119, 119429, 121631, 123979, 128663, 131009, 133327, 135701, 138007, 164309, 166849, 169339, 171679, 174061, 176467, 178889, 181277, 183593, 185971, 188417, 190811, 193183, 195709, 198091, 200573,154571, 157007  };
+
 
         private static void InitializeRandomLongs() {
             randomLongs = new long[max];
@@ -127,21 +97,20 @@ namespace MemoryReads {
             Console.WriteLine($"count: {n/1024/1024:0.00}  averageIndex: {totalIndex/n/1024/1024:0.00}  standard deviation: {Math.Sqrt(totalIndexSquared/n - totalIndex/n*totalIndex/n)/1024/1024:0.00}");
 
             long idx = rnd.Next(0, max - 1);
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < 8*12; i++) {
                 entryPoints.Add(idx);
                 for (int j = 0; j < 1000*1000; j++) idx = randomLongs[idx];
             }
             Console.WriteLine(entryPoints.Select(i => i.ToString()).JoinWith(","));
         }
 
-        public static void DumpResults(string label, int threadCount, List<double> times, double bandwidth, double access, double rate) {
-            Console.WriteLine(label +
-                              $"{threadCount} threads  {bandwidth,6:0.###} GB/s  {access,6:0.##} ns  {rate,6:0.#} MHz   ({times.Min():0} {times.Average(),6:0.##} {times.Max(),6:0} {times.StandardDeviation(),6:0.##} {times.Count(),6:0})");
+        public static void DumpResults(string label, int concurrencyLevel, int threadCount, List<double> times, double bandwidth, double access, double rate) {
+            Console.WriteLine(label + $" {concurrencyLevel} concurrencyLevel  {threadCount} threads  {bandwidth,6:0.###} GB/s  {access,6:0.##} ns  {rate,6:0.#} MHz   ( {times.Min():0} {times.Average(),6:0.##} {times.Max(),6:0} {times.StandardDeviation(),6:0.##} {times.Count(),6:0} )");
         }
 
-        public static void ChainedReads(int maxThreadCount, int concurrencyLevel) {
-            var arrays = maxThreadCount.EnumerateTo().Select(t => new long[max]).ToArray();
-            foreach (var array in arrays) randomLongs.CopyTo(array, 0);
+        public static void NewChainedReads(int maxThreadCount, int concurrencyLevel) {
+            var array = new long[max];
+            randomLongs.CopyTo(array, 0);
             for (int threadCount = 1; threadCount <= maxThreadCount; threadCount += 1) {
                 var times = new List<double>();
                 long steps = max/8;
@@ -149,7 +118,6 @@ namespace MemoryReads {
                     var threads = threadCount.EnumerateTo().Select(t => new Thread(() => {
                         switch (concurrencyLevel) {
                             case 1: {
-                                    var array = arrays[t];
                                     long index = 0;
                                 try {
                                     for (int i = 0; i < steps; i++) index = array[index];
@@ -176,9 +144,8 @@ namespace MemoryReads {
                                     break;
                             }
                             case 2: {
-                                var array = arrays[t];
-                                long index0 = entryPoints[0];
-                                long index1 = entryPoints[1];
+                                long index0 = entryPoints[maxThreadCount*t + 0];
+                                long index1 = entryPoints[maxThreadCount * t + 1];
                                 for (int i = 0; i < steps; i++) {
                                     index0 = array[index0];
                                     index1 = array[index1];
@@ -186,10 +153,9 @@ namespace MemoryReads {
                                 break;
                             }
                             case 3: {
-                                var array = arrays[t];
-                                long index0 = entryPoints[0];
-                                long index1 = entryPoints[1];
-                                long index2 = entryPoints[2];
+                                long index0 = entryPoints[maxThreadCount * t + 0];
+                                long index1 = entryPoints[maxThreadCount * t + 1];
+                                long index2 = entryPoints[maxThreadCount * t + 2];
                                 for (int i = 0; i < steps; i++) {
                                     index0 = array[index0];
                                     index1 = array[index1];
@@ -198,11 +164,10 @@ namespace MemoryReads {
                                 break;
                             }
                             case 4: {
-                                var array = arrays[t];
-                                long index0 = entryPoints[0];
-                                long index1 = entryPoints[1];
-                                long index2 = entryPoints[2];
-                                long index3 = entryPoints[3];
+                                long index0 = entryPoints[maxThreadCount * t + 0];
+                                long index1 = entryPoints[maxThreadCount * t + 1];
+                                long index2 = entryPoints[maxThreadCount*t + 2];
+                                long index3 = entryPoints[maxThreadCount * t + 3];
                                 for (int i = 0; i < steps; i++) {
                                     index0 = array[index0];
                                     index1 = array[index1];
@@ -212,12 +177,11 @@ namespace MemoryReads {
                                 break;
                             }
                             case 5: {
-                                var array = arrays[t];
-                                long index0 = entryPoints[0];
-                                long index1 = entryPoints[1];
-                                long index2 = entryPoints[2];
-                                long index3 = entryPoints[3];
-                                long index4 = entryPoints[4];
+                                long index0 = entryPoints[maxThreadCount*t + 0];
+                                long index1 = entryPoints[maxThreadCount*t + 1];
+                                long index2 = entryPoints[maxThreadCount*t + 2];
+                                long index3 = entryPoints[maxThreadCount*t + 3];
+                                long index4 = entryPoints[maxThreadCount * t + 4];
                                 for (int i = 0; i < steps; i++) {
                                     index0 = array[index0];
                                     index1 = array[index1];
@@ -228,13 +192,12 @@ namespace MemoryReads {
                                 break;
                             }
                             case 6: {
-                                var array = arrays[t];
-                                long index0 = entryPoints[0];
-                                long index1 = entryPoints[1];
-                                long index2 = entryPoints[2];
-                                long index3 = entryPoints[3];
-                                long index4 = entryPoints[4];
-                                long index5 = entryPoints[5];
+                                long index0 = entryPoints[maxThreadCount*t + 0];
+                                long index1 = entryPoints[maxThreadCount*t + 1];
+                                long index2 = entryPoints[maxThreadCount*t + 2];
+                                long index3 = entryPoints[maxThreadCount*t + 3];
+                                long index4 = entryPoints[maxThreadCount*t + 4];
+                                long index5 = entryPoints[maxThreadCount * t + 5];
                                 for (int i = 0; i < steps; i++) {
                                     index0 = array[index0];
                                     index1 = array[index1];
@@ -245,6 +208,48 @@ namespace MemoryReads {
                                 }
                                 break;
                             }
+                            case 7:
+                                {
+                                    long index0 = entryPoints[maxThreadCount * t + 0];
+                                    long index1 = entryPoints[maxThreadCount * t + 1];
+                                    long index2 = entryPoints[maxThreadCount * t + 2];
+                                    long index3 = entryPoints[maxThreadCount * t + 3];
+                                    long index4 = entryPoints[maxThreadCount * t + 4];
+                                    long index5 = entryPoints[maxThreadCount * t + 5];
+                                    long index6 = entryPoints[maxThreadCount * t + 6];
+                                    for (int i = 0; i < steps; i++) {
+                                        index0 = array[index0];
+                                        index1 = array[index1];
+                                        index2 = array[index2];
+                                        index3 = array[index3];
+                                        index4 = array[index4];
+                                        index5 = array[index5];
+                                        index6 = array[index6];
+                                    }
+                                    break;
+                                }
+                            case 8:
+                                {
+                                    long index0 = entryPoints[maxThreadCount * t + 0];
+                                    long index1 = entryPoints[maxThreadCount * t + 1];
+                                    long index2 = entryPoints[maxThreadCount * t + 2];
+                                    long index3 = entryPoints[maxThreadCount * t + 3];
+                                    long index4 = entryPoints[maxThreadCount * t + 4];
+                                    long index5 = entryPoints[maxThreadCount * t + 5];
+                                    long index6 = entryPoints[maxThreadCount * t + 6];
+                                    long index7 = entryPoints[maxThreadCount * t + 7];
+                                    for (int i = 0; i < steps; i++) {
+                                        index0 = array[index0];
+                                        index1 = array[index1];
+                                        index2 = array[index2];
+                                        index3 = array[index3];
+                                        index4 = array[index4];
+                                        index5 = array[index5];
+                                        index6 = array[index6];
+                                        index7 = array[index7];
+                                    }
+                                    break;
+                                }
                         }
                     })).ToList();
                     var sw = Stopwatch.StartNew();
@@ -261,13 +266,14 @@ namespace MemoryReads {
                 var bandwidth = totalBytesRead/timeInSeconds/ 1024.0 / 1024.0 / 1024.0; // GB/s
                 var readsPerSecond = totalNumberOfLongsRead/timeInSeconds/ 1000.0 / 1000.0; // MHz
                 var accessTime = timeInSeconds/numberOfLongsReadInOneThread* 1000.0 * 1000.0 * 1000.0; // ns
-                DumpResults($"ChainedReads-{concurrencyLevel}: ", threadCount, times, bandwidth, accessTime, readsPerSecond);
+                DumpResults("ChainedReads: ", concurrencyLevel, threadCount, times, bandwidth, accessTime, readsPerSecond);
             }
         }
 
-        private static void SequentialReads(int maxThreadCount, int arrayCount) {
-            var allArrays = maxThreadCount.EnumerateTo().Select(i => arrayCount.EnumerateTo().Select(t => new long[max]).ToArray()).ToArray();
-            foreach (var arrays in allArrays) foreach (var array in arrays) for (int i = 0; i < array.Length; i++) array[i] = i;
+        private static void NewSequentialReads(int maxThreadCount, int concurrencyLevel) {
+            var array = new long[max];
+            for (int i = 0; i < array.Length; i++) array[i] = i;
+            long mask = max - 1;
             for (int threadCount = 1; threadCount <= maxThreadCount; threadCount += 1) {
                 long steps = max;
                 var times = new List<double>();
@@ -275,52 +281,30 @@ namespace MemoryReads {
                     var threads = threadCount.EnumerateTo().Select(t => new Thread(() => {
                         for (int iteration = 0; iteration < iterations; iteration++) {
                             long total = 0;
-                            var arrays = allArrays[t];
-                            switch (arrayCount) {
+                            switch (concurrencyLevel) {
                                 case 1: {
-                                    var array0 = arrays[0];
-                                    for (int i = 0; i < steps; i++) total += array0[i];
+                                    for (int i = 0; i < steps; i++) total += array[i];
                                     break;
                                 }
                                 case 2: {
-                                    var array0 = arrays[0];
-                                    var array1 = arrays[1];
-                                    for (int i = 0; i < steps; i++) total += array0[i] + array1[i];
+                                    for (int i = 0; i < steps; i++) total += array[i] + array[(max/2 + i) & mask];
                                     break;
                                 }
                                 case 3: {
-                                    var array0 = arrays[0];
-                                    var array1 = arrays[1];
-                                    var array2 = arrays[2];
-                                    for (int i = 0; i < steps; i++) total += array0[i] + array1[i] + array2[i];
+                                    for (int i = 0; i < steps; i++) total += array[i] + array[(max/2 + i) & mask] + array[(3*max/4 + i) & mask];
                                     break;
                                 }
                                 case 4: {
-                                    var array0 = arrays[0];
-                                    var array1 = arrays[1];
-                                    var array2 = arrays[2];
-                                    var array3 = arrays[3];
-                                    for (int i = 0; i < steps; i++) total += array0[i] + array1[i] + array2[i] + array3[i];
-                                    break;
+                                        for (int i = 0; i < steps; i++) total += array[i] + array[(max/4 + i) & mask] + array[(max/2 + i) & mask] + array[(3*max/4 + i) & mask];
+                                        break;
                                 }
                                 case 5: {
-                                    var array0 = arrays[0];
-                                    var array1 = arrays[1];
-                                    var array2 = arrays[2];
-                                    var array3 = arrays[3];
-                                    var array4 = arrays[4];
-                                    for (int i = 0; i < steps; i++) total += array0[i] + array1[i] + array2[i] + array3[i] + array4[i];
-                                    break;
+                                        for (int i = 0; i < steps; i++) total += array[i] + array[(max/8 + i) & mask] + array[(max/4 + i) & mask] + array[(3*max/8 + i) & mask] + array[(max/2 + i) & mask];
+                                        break;
                                 }
                                 case 6: {
-                                    var array0 = arrays[0];
-                                    var array1 = arrays[1];
-                                    var array2 = arrays[2];
-                                    var array3 = arrays[3];
-                                    var array4 = arrays[4];
-                                    var array5 = arrays[5];
-                                    for (int i = 0; i < steps; i++) total += array0[i] + array1[i] + array2[i] + array3[i] + array4[i] + array5[i];
-                                    break;
+                                        for (int i = 0; i < steps; i++) total += array[i] + array[(max / 8 + i) & mask] + array[(max / 4 + i) & mask] + array[(3 * max / 8 + i) & mask] + array[(max/2 + i) & mask] + array[(5 * max / 8 + i) & mask];
+                                        break;
                                 }
                             }
                         }
@@ -331,24 +315,24 @@ namespace MemoryReads {
                     times.Add(sw.ElapsedMilliseconds);
                 }
 
-                double totalNumberOfLongsRead = iterations * steps * (long)threadCount * (long)arrayCount;
+                double totalNumberOfLongsRead = iterations * steps * (long)threadCount * (long)concurrencyLevel;
                 double totalBytesRead = 8L * totalNumberOfLongsRead;
-                double numberOfLongsReadInOneThread = iterations * steps * (long)arrayCount;
+                double numberOfLongsReadInOneThread = iterations * steps * (long)concurrencyLevel;
                 double timeInSeconds = times.Min() / 1000.0;
 
                 var bandwidth = totalBytesRead / timeInSeconds / 1024.0 / 1024.0 / 1024.0; // GB/s
                 var readsPerSecond = totalNumberOfLongsRead / timeInSeconds / 1000.0 / 1000.0; // MHz
                 var accessTime = timeInSeconds / numberOfLongsReadInOneThread * 1000.0 * 1000.0 * 1000.0; // ns
-                DumpResults($"SequentialReads-{arrayCount}: ", threadCount, times, bandwidth, accessTime, readsPerSecond);
+                DumpResults($"SequentialReads: ", concurrencyLevel, threadCount, times, bandwidth, accessTime, readsPerSecond);
             }
         }
 
         
 
 
-        private static void RandomReads(int maxThreadCount, int inThreadParallelismLevel) {
-            var arrays = maxThreadCount.EnumerateTo().Select(t => new long[max]).ToArray();
-            foreach (var array in arrays) for (int i = 0; i < array.Length; i++) array[i] = i;
+        private static void NewRandomReads(int maxThreadCount, int concurrencyLevel) {
+            var array = new long[max];
+            for (int i = 0; i < array.Length; i++) array[i] = i;
             for (int threadCount = 1; threadCount <= maxThreadCount; threadCount += 1)
             {
                 long steps = max/2;  // reduce the number of reads as this is slower
@@ -363,56 +347,61 @@ namespace MemoryReads {
                         long total3 = 0;
                         long total4 = 0;
                         long total5 = 0;
-                        var array = arrays[t];
-                        switch (inThreadParallelismLevel) {
+                        long prime0 = primes[maxThreadCount * t + 0];
+                        long prime1 = primes[maxThreadCount * t + 1];
+                        long prime2 = primes[maxThreadCount * t + 2];
+                        long prime3 = primes[maxThreadCount * t + 3];
+                        long prime4 = primes[maxThreadCount * t + 4];
+                        long prime5 = primes[maxThreadCount * t + 5];
+                        switch (concurrencyLevel) {
                             case 1: {
-                                for (int i = 0; i < steps; i++) {
-                                    total0 += array[(11587L*i) & mask]; // is this good enough to outsmart the prefetcher?
+                                    for (int i = 0; i < steps; i++) {
+                                    total0 += array[(prime0*i) & mask]; // is this good enough to outsmart the prefetcher?
                                 }
                                 break;
                             }
                             case 2: {
                                     for (int i = 0; i < steps; i++) {
-                                        total0 += array[(24317L * i) & mask];
-                                        total1 += array[(14407L * i) & mask];
+                                        total0 += array[(prime0 * i) & mask];
+                                        total1 += array[(prime1 * i) & mask];
                                     }
                                     break;
                             }
                             case 3: {
                                     for (int i = 0; i < steps; i++) {
-                                        total0 += array[(24317L * i) & mask];
-                                        total1 += array[(14407L * i) & mask];
-                                        total2 += array[(11587L * i) & mask];
+                                        total0 += array[(prime0 * i) & mask];
+                                        total1 += array[(prime1 * i) & mask];
+                                        total2 += array[(prime2 * i) & mask];
                                     }
                                     break;
                             }
                             case 4: {
                                     for (int i = 0; i < steps; i++) {
-                                        total0 += array[(24317L * i) & mask];
-                                        total1 += array[(14407L * i) & mask];
-                                        total2 += array[(11587L * i) & mask];
-                                        total3 += array[( 9767L * i) & mask];
+                                        total0 += array[(prime0 * i) & mask];
+                                        total1 += array[(prime1 * i) & mask];
+                                        total2 += array[(prime2 * i) & mask];
+                                        total3 += array[(prime3 * i) & mask];
                                     }
                                     break;
                             }
                             case 5: {
                                     for (int i = 0; i < steps; i++) {
-                                        total0 += array[(24317L * i) & mask];
-                                        total1 += array[(14407L * i) & mask];
-                                        total2 += array[(11587L * i) & mask];
-                                        total3 += array[( 9767L * i) & mask];
-                                        total4 += array[( 5261L * i) & mask];
+                                        total0 += array[(prime0 * i) & mask];
+                                        total1 += array[(prime1 * i) & mask];
+                                        total2 += array[(prime2 * i) & mask];
+                                        total3 += array[(prime3 * i) & mask];
+                                        total4 += array[(prime4 * i) & mask];
                                     }
                                     break;
                             }
                             case 6: {
                                     for (int i = 0; i < steps; i++) {
-                                        total0 += array[(24317L*i) & mask];
-                                        total1 += array[(14407L*i) & mask];
-                                        total2 += array[(11587L*i) & mask];
-                                        total3 += array[( 9767L*i) & mask];
-                                        total4 += array[( 5261L*i) & mask];
-                                        total5 += array[( 1283L*i) & mask];
+                                        total0 += array[(prime0*i) & mask];
+                                        total1 += array[(prime1*i) & mask];
+                                        total2 += array[(prime2*i) & mask];
+                                        total3 += array[(prime3*i) & mask];
+                                        total4 += array[(prime4*i) & mask];
+                                        total5 += array[(prime5*i) & mask];
                                     }
                                     break;
                             }
@@ -425,15 +414,15 @@ namespace MemoryReads {
                     times.Add(sw.ElapsedMilliseconds);
                 }
 
-                double totalNumberOfLongsRead = steps * (long)threadCount * inThreadParallelismLevel;
+                double totalNumberOfLongsRead = steps * (long)threadCount * concurrencyLevel;
                 double totalBytesRead = 8 * totalNumberOfLongsRead;
-                double numberOfLongsReadInOneThread = steps* inThreadParallelismLevel;
+                double numberOfLongsReadInOneThread = steps* concurrencyLevel;
                 double timeInSeconds = times.Min() / 1000.0;
 
                 var bandwidth = totalBytesRead / timeInSeconds / 1024.0 / 1024.0 / 1024.0; // GB/s
                 var readsPerSecond = totalNumberOfLongsRead / timeInSeconds / 1000.0 / 1000.0; // MHz
                 var accessTime = timeInSeconds / numberOfLongsReadInOneThread * 1000.0 * 1000.0 * 1000.0; // ns
-                DumpResults($"RandomReads-{inThreadParallelismLevel}:", threadCount, times, bandwidth, accessTime, readsPerSecond);
+                DumpResults($"RandomReads:", concurrencyLevel, threadCount, times, bandwidth, accessTime, readsPerSecond);
             }
         }
 
@@ -517,7 +506,7 @@ namespace MemoryReads {
                 var bandwidth = totalBytesRead / timeInSeconds / 1024.0 / 1024.0 / 1024.0; // GB/s
                 var readsPerSecond = totalNumberOfLongsRead / timeInSeconds / 1000.0 / 1000.0; // MHz
                 var accessTime = timeInSeconds / numberOfLongsReadInOneThread * 1000.0 * 1000.0 * 1000.0; // ns
-                DumpResults($"SequentialReadsVectorized-{arrayCount}: ", threadCount, times, bandwidth, accessTime, readsPerSecond);
+                DumpResults($"SequentialReadsVectorized: ", arrayCount, threadCount, times, bandwidth, accessTime, readsPerSecond);
             }
         }
         private static void LargeArraySequentialReads(params int[] sizes)
@@ -548,7 +537,7 @@ namespace MemoryReads {
                     var bandwidth = totalBytesRead/timeInSeconds/1024.0/1024.0/1024.0; // GB/s
                     var readsPerSecond = totalNumberOfLongsRead/timeInSeconds/1000.0/1000.0; // MHz
                     var accessTime = timeInSeconds/numberOfLongsReadInOneThread*1000.0*1000.0*1000.0; // ns
-                    DumpResults($"SequentialReads on {size} GB: ", 1, times, bandwidth, accessTime, readsPerSecond);
+                    DumpResults($"SequentialReads on {size} GB: ", 1 , 1, times, bandwidth, accessTime, readsPerSecond);
                 }
         }
 
@@ -607,7 +596,7 @@ namespace MemoryReads {
                     var bandwidth = totalBytesRead/timeInSeconds/1024.0/1024.0/1024.0; // GB/s
                     var readsPerSecond = totalNumberOfLongsRead/timeInSeconds/1000.0/1000.0; // MHz
                     var accessTime = timeInSeconds/numberOfLongsReadInOneThread*1000.0*1000.0*1000.0; // ns
-                    DumpResults($"{inThreadParallelismLevel,6:0.#} - RandomReads on {size,6:0.#} GB: ", threadCount, times, bandwidth, accessTime, readsPerSecond);
+                    DumpResults($"RandomReads on {size,6:0.#} GB: ", inThreadParallelismLevel, threadCount, times, bandwidth, accessTime, readsPerSecond);
                 }
             }
         }
@@ -665,7 +654,7 @@ namespace MemoryReads {
                     var bandwidth = totalBytesRead/timeInSeconds/1024.0/1024.0/1024.0; // GB/s
                     var readsPerSecond = totalNumberOfLongsRead/timeInSeconds/1000.0/1000.0; // MHz
                     var accessTime = timeInSeconds/numberOfLongsReadInOneThread*1000.0*1000.0*1000.0; // ns
-                    DumpResults($"{inThreadParallelismLevel,6:0.#} - ChainedReads on {size,6:0.#} GB: ", threadCount, times, bandwidth, accessTime, readsPerSecond);
+                    DumpResults($"ChainedReads on {size,6:0.#} GB: ", inThreadParallelismLevel, threadCount, times, bandwidth, accessTime, readsPerSecond);
                 }
             }
         }

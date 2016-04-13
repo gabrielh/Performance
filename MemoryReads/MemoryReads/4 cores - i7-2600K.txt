@@ -1,5 +1,88 @@
 ﻿Sandy Bridge 3.4GHz, actual 4.2GHz dual channel DDR3
 
+29.03.2016
+
+C:\temp>MemoryReads.exe
+count: 128.00  averageIndex: 64.00  standard deviation: 36.95
+46370118,39595670,70789900,75335830,38313396,79573897,90032549,65579076,76639645,71825431,59382107,50636479,8855172,65818062,63776374,83095222,78423426,11312192,49297353,134204691,79602062,64058768,27708005,120356204,35543921,132606495,133106118,87323092,119774363,94357173,5020191,81160306,68329098,59562082,35800682,94543394,116592811,66826320,90360457,16663482,2145476,90780160,66856030,102460730,53206729,66098503,33590964,53632918,10790552,108354876,123994573,62579271,67701837,10964347,110010748,32534596,13123241,67501588,60345818,75394479,54404684,87646217,133910387,13298094,777502,63705769,40712173,5845783,110947937,58408675,86569946,88586343,30422396,68402756,14775018,107224309,110302808,127460659,65642106,61454352,104691645,19674178,48918411,36258792,129041353,130218540,110563639,6023812,108876925,87018196,50880627,83095462,58469114,52207871,128365109,25993078
+71
+ChainedReads:  1 concurrencyLevel  1 threads   0.088 GB/s      85 ns    11.8 MHz   ( 1426 1547.6   1635  61.08     10 )
+ChainedReads:  1 concurrencyLevel  2 threads    0.16 GB/s   93.16 ns    21.5 MHz   ( 1563   1717   1960 111.86     10 )
+ChainedReads:  1 concurrencyLevel  3 threads   0.274 GB/s   81.66 ns    36.7 MHz   ( 1370   1481   1687  118.6     10 )
+ChainedReads:  1 concurrencyLevel  4 threads    0.37 GB/s   80.59 ns    49.6 MHz   ( 1352 1390.2   1469   36.9     10 )
+ChainedReads:  2 concurrencyLevel  1 threads   0.176 GB/s   42.26 ns    23.7 MHz   ( 1418 1440.1   1469  18.91     10 )
+ChainedReads:  2 concurrencyLevel  2 threads   0.345 GB/s   43.18 ns    46.3 MHz   ( 1449   1508   1635  64.73     10 )
+ChainedReads:  2 concurrencyLevel  3 threads   0.501 GB/s   44.61 ns    67.2 MHz   ( 1497 1576.6   1678  56.38     10 )
+ChainedReads:  2 concurrencyLevel  4 threads   0.642 GB/s    46.4 ns    86.2 MHz   ( 1557 1685.3   1797  75.98     10 )
+ChainedReads:  3 concurrencyLevel  1 threads    0.26 GB/s   28.71 ns    34.8 MHz   ( 1445 1666.7   2033 244.97     10 )
+ChainedReads:  3 concurrencyLevel  2 threads   0.495 GB/s   30.08 ns    66.5 MHz   ( 1514 1711.4   1845 107.75     10 )
+ChainedReads:  3 concurrencyLevel  3 threads   0.639 GB/s   34.99 ns    85.7 MHz   ( 1761 1975.5   2130 121.15     10 )
+ChainedReads:  3 concurrencyLevel  4 threads   0.726 GB/s   41.05 ns    97.4 MHz   ( 2066 2411.3   2696 211.88     10 )
+ChainedReads:  4 concurrencyLevel  1 threads   0.335 GB/s   22.26 ns    44.9 MHz   ( 1494 1642.7   1961 165.74     10 )
+ChainedReads:  4 concurrencyLevel  2 threads   0.624 GB/s   23.89 ns    83.7 MHz   ( 1603 1684.5   1818  65.88     10 )
+ChainedReads:  4 concurrencyLevel  3 threads   0.926 GB/s   24.12 ns   124.4 MHz   ( 1619 2077.4   2443 302.26     10 )
+ChainedReads:  4 concurrencyLevel  4 threads    1.05 GB/s   28.37 ns     141 MHz   ( 1904 2110.6   2765 280.97     10 )
+ChainedReads:  5 concurrencyLevel  1 threads   0.279 GB/s   26.69 ns    37.5 MHz   ( 2239 2412.2   2550 117.06     10 )
+ChainedReads:  5 concurrencyLevel  2 threads   0.558 GB/s    26.7 ns    74.9 MHz   ( 2240 2312.2   2381  48.39     10 )
+ChainedReads:  5 concurrencyLevel  3 threads   0.826 GB/s   27.07 ns   110.8 MHz   ( 2271 2446.8   2822 163.98     10 )
+ChainedReads:  5 concurrencyLevel  4 threads    0.92 GB/s    32.4 ns   123.5 MHz   ( 2718 2882.4   3205 161.92     10 )
+ChainedReads:  6 concurrencyLevel  1 threads    0.28 GB/s   26.63 ns    37.5 MHz   ( 2681 2727.4   2894  79.07     10 )
+ChainedReads:  6 concurrencyLevel  2 threads   0.562 GB/s    26.5 ns    75.5 MHz   ( 2668 2719.4   2761  28.79     10 )
+ChainedReads:  6 concurrencyLevel  3 threads   0.826 GB/s   27.05 ns   110.9 MHz   ( 2723 2874.2   3025 105.63     10 )
+ChainedReads:  6 concurrencyLevel  4 threads   0.944 GB/s   31.56 ns   126.7 MHz   ( 3177 3599.5   4113 296.52     10 )
+SequentialReads:  1 concurrencyLevel  1 threads   8.772 GB/s    0.85 ns  1177.3 MHz   ( 570  633.2    770  70.87     10 )
+SequentialReads:  1 concurrencyLevel  2 threads  17.422 GB/s    0.86 ns  2338.3 MHz   ( 574  605.3    683  33.08     10 )
+SequentialReads:  1 concurrencyLevel  3 threads  20.833 GB/s    1.07 ns  2796.2 MHz   ( 720    764    795  23.34     10 )
+SequentialReads:  1 concurrencyLevel  4 threads  21.882 GB/s    1.36 ns  2936.9 MHz   ( 914  978.9   1047  46.95     10 )
+SequentialReads:  2 concurrencyLevel  1 threads  10.384 GB/s    0.72 ns  1393.7 MHz   ( 963  975.8    996   10.1     10 )
+SequentialReads:  2 concurrencyLevel  2 threads  19.493 GB/s    0.76 ns  2616.3 MHz   ( 1026 1147.3   1242  60.44     10 )
+SequentialReads:  2 concurrencyLevel  3 threads  24.252 GB/s    0.92 ns  3255.1 MHz   ( 1237 1509.9   1732 169.25     10 )
+SequentialReads:  2 concurrencyLevel  4 threads  22.087 GB/s    1.35 ns  2964.5 MHz   ( 1811 2162.1   2350  200.9     10 )
+SequentialReads:  3 concurrencyLevel  1 threads  10.409 GB/s    0.72 ns  1397.1 MHz   ( 1441 1515.2   1630  70.14     10 )
+SequentialReads:  3 concurrencyLevel  2 threads  18.394 GB/s    0.81 ns  2468.8 MHz   ( 1631 1834.2   2167 163.28     10 )
+SequentialReads:  3 concurrencyLevel  3 threads  22.912 GB/s    0.98 ns  3075.3 MHz   ( 1964 2225.4   2578  164.8     10 )
+SequentialReads:  3 concurrencyLevel  4 threads  22.463 GB/s    1.33 ns    3015 MHz   ( 2671 2869.5   3005 104.25     10 )
+SequentialReads:  4 concurrencyLevel  1 threads  11.123 GB/s    0.67 ns    1493 MHz   ( 1798 1808.6   1834  10.16     10 )
+SequentialReads:  4 concurrencyLevel  2 threads  21.322 GB/s     0.7 ns  2861.8 MHz   ( 1876 2108.6   2254 116.42     10 )
+SequentialReads:  4 concurrencyLevel  3 threads  26.432 GB/s    0.85 ns  3547.6 MHz   ( 2270 2861.4   3185 287.88     10 )
+SequentialReads:  4 concurrencyLevel  4 threads  21.339 GB/s     1.4 ns  2864.1 MHz   ( 3749 4188.9   4641 253.48     10 )
+SequentialReads:  5 concurrencyLevel  1 threads   8.018 GB/s    0.93 ns  1076.2 MHz   ( 3118 3371.6   3482 112.44     10 )
+SequentialReads:  5 concurrencyLevel  2 threads  12.788 GB/s    1.17 ns  1716.3 MHz   ( 3910 4097.8   4481 170.54     10 )
+SequentialReads:  5 concurrencyLevel  3 threads  16.681 GB/s    1.34 ns    2239 MHz   ( 4496 4794.2   5243 209.14     10 )
+SequentialReads:  5 concurrencyLevel  4 threads  14.952 GB/s    1.99 ns  2006.8 MHz   ( 6688 7160.6   7575 305.55     10 )
+SequentialReads:  6 concurrencyLevel  1 threads   5.238 GB/s    1.42 ns   703.1 MHz   ( 5727 6363.5   7073 382.77     10 )
+SequentialReads:  6 concurrencyLevel  2 threads   8.723 GB/s    1.71 ns  1170.8 MHz   ( 6878 7676.7   8449 540.14     10 )
+SequentialReads:  6 concurrencyLevel  3 threads  11.534 GB/s    1.94 ns  1548.1 MHz   ( 7803 9424.1  10692 1125.58     10 )
+SequentialReads:  6 concurrencyLevel  4 threads  11.272 GB/s    2.64 ns  1512.9 MHz   ( 10646 11791.2  13902 1097.97     10 )
+RandomReads: 1 concurrencyLevel  1 threads   0.472 GB/s   15.78 ns    63.4 MHz   ( 1059 1114.4   1278  64.25     10 )
+RandomReads: 1 concurrencyLevel  2 threads   0.842 GB/s    17.7 ns     113 MHz   ( 1188 1236.4   1597 126.85     10 )
+RandomReads: 1 concurrencyLevel  3 threads   1.153 GB/s   19.39 ns   154.7 MHz   ( 1301 1398.5   1599  106.8     10 )
+RandomReads: 1 concurrencyLevel  4 threads   1.327 GB/s   22.46 ns   178.1 MHz   ( 1507 1598.1   1759  76.49     10 )
+RandomReads: 2 concurrencyLevel  1 threads   0.379 GB/s   19.66 ns    50.9 MHz   ( 2639 2673.7   2720  25.97     10 )
+RandomReads: 2 concurrencyLevel  2 threads    0.68 GB/s   21.93 ns    91.2 MHz   ( 2943 3072.7   3491 159.92     10 )
+RandomReads: 2 concurrencyLevel  3 threads   0.965 GB/s   23.16 ns   129.5 MHz   ( 3109 3419.3   4270 471.21     10 )
+RandomReads: 2 concurrencyLevel  4 threads    1.04 GB/s   28.65 ns   139.6 MHz   ( 3846 4002.2   4193 102.28     10 )
+RandomReads: 3 concurrencyLevel  1 threads   0.361 GB/s   20.66 ns    48.4 MHz   ( 4160 4413.4   5099 282.63     10 )
+RandomReads: 3 concurrencyLevel  2 threads   0.651 GB/s   22.87 ns    87.4 MHz   ( 4605 4882.5   5502 290.12     10 )
+RandomReads: 3 concurrencyLevel  3 threads   0.789 GB/s   28.32 ns   105.9 MHz   ( 5701 5949.3   6584 270.09     10 )
+RandomReads: 3 concurrencyLevel  4 threads   0.998 GB/s   29.87 ns   133.9 MHz   ( 6014 6688.3   8861 878.96     10 )
+RandomReads: 4 concurrencyLevel  1 threads   0.308 GB/s   24.17 ns    41.4 MHz   ( 6489 6656.9   6778 105.59     10 )
+RandomReads: 4 concurrencyLevel  2 threads   0.566 GB/s   26.34 ns    75.9 MHz   ( 7071 7177.9   7317  99.71     10 )
+RandomReads: 4 concurrencyLevel  3 threads   0.858 GB/s   26.04 ns   115.2 MHz   ( 6989 7727.9   8573 550.12     10 )
+RandomReads: 4 concurrencyLevel  4 threads   0.956 GB/s   31.18 ns   128.3 MHz   ( 8370 9660.9  11104 1029.32     10 )
+RandomReads: 5 concurrencyLevel  1 threads   0.401 GB/s   18.58 ns    53.8 MHz   ( 6234 6750.2   7530 472.34     10 )
+RandomReads: 5 concurrencyLevel  2 threads   0.724 GB/s   20.58 ns    97.2 MHz   ( 6904 7294.6   7822 358.83     10 )
+RandomReads: 5 concurrencyLevel  3 threads   0.916 GB/s   24.41 ns   122.9 MHz   ( 8190   8419   9298 327.02     10 )
+RandomReads: 5 concurrencyLevel  4 threads    1.08 GB/s   27.59 ns     145 MHz   ( 9258 10172.2  12409 1148.37     10 )
+RandomReads: 6 concurrencyLevel  1 threads   0.364 GB/s   20.49 ns    48.8 MHz   ( 8251 8727.2   9432 417.73     10 )
+RandomReads: 6 concurrencyLevel  2 threads   0.691 GB/s   21.56 ns    92.8 MHz   ( 8680   9000   9297 171.56     10 )
+RandomReads: 6 concurrencyLevel  3 threads    0.97 GB/s   23.04 ns   130.2 MHz   ( 9276 11137.9  19044 3260.85     10 )
+RandomReads: 6 concurrencyLevel  4 threads   1.145 GB/s   26.04 ns   153.6 MHz   ( 10484 11791.1  13589 987.39     10 )
+
+C:\temp>
+
+
+
 C:\temp>MemoryReads.exe 8
 count: 128.00  averageIndex: 64.00  standard deviation: 36.95
 129663962,85502707,77426177,114293065,118398924,101310257,9255308,117228630,130147866,5591566,18901448,129249883,57491559,17078622,10716220,
